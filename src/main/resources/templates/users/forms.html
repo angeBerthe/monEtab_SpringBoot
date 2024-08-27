@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr"
+
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head th:insert="fragments/fragment::head" ></head>
+<body>
+<div class="sidebar"  th:insert="fragments/fragment::sidebar"></div>
+
+<div class="main-content">
+    <main>
+        <div class="retour-container">
+            <a th:href="@{/users}" class="retour">← Retour</a>
+        </div>
+        <h2 th:text="${user.id_user == null}?'Ajouter un Utilisateur':'Modifier un Utilisateur'"></h2>
+        <form id="addStudentForm" th:action="@{/users}" th:object="${user}" method="post">
+            <input th:field="*{id_user}" hidden type="text">
+            <div class="form-row">
+                <input type="text" id="pseudo"  th:field="*{pseudo}" placeholder="Pseudo" required>
+            </div>
+            <div class="form-row">
+                <input type="password" id="password" th:field="*{password}" placeholder="Mot de passe" required>
+            </div>
+            <div class="form-row">
+                <input type="password" id="confirmer mot de passe" placeholder="Confirmer mot de passe" required>
+            </div>
+            <div class="form-row buttons">
+                <button type="button" class="btn-cancel">Annuler</button>
+                <button type="submit" class="btn-save">Enregistrer</button>
+            </div>
+        </form>
+    </main>
+</div>
+
+<th:block th:insert="fragments/fragment::gender"></th:block>
+<th:block th:insert="fragments/fragment::modal"></th:block>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head th:insert="fragments/fragment::head" ></head>
+<body>
+<div class="sidebar"  th:insert="fragments/fragment::sidebar"></div>
+
+<div class="main-content">
+    <main>
+        <header>
+            <h1>Professeur (<span th:text="${teachers.size()}"></span>)</h1>
+            <a th:href="@{/teachers/add}">
+            <button class="add-student"><img src="../icons/plus.png" style="width: 30px;height: 30px" alt=""></button>
+            </a>
+        </header>
+        <section class="table-section">
+            <table>
+                <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Email</th>
+                    <th>Matiere</th>
+                    <th>Vacant</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="teacher:${teachers}">
+                    <td th:text="${teacher.lastName}"></td>
+                    <td th:text="${teacher.firstName}"></td>
+                    <td th:text="${teacher.email}"></td>
+                    <td  th:text="${teacher.matiereEnseigne}"></td>
+                    <td  th:text="${teacher.vacant}"></td>
+                    <td>
+                        <a th:href="@{/teachers/{id_person}(id_person=${teacher.id_person})}">
+                        <button class="edit-btn">Modifier</button>
+                        </a>
+                        <form th:action="@{/teachers/{id_person}(id_person=${teacher.id_person})}" method="post" style="display:inline;">
+                            <button type="submit" class="delete-btn">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+</div>
+<!-- Modal de confirmation -->
+<div id="confirmationModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>ATTENTION !!!</h2>
+        </div>
+        <div class="modal-body">
+            <p>Voulez-vous supprimer ce professeur ?</p>
+        </div>
+        <div class="modal-footer">
+            <button id="confirmYes" class="modal-btn yes-btn">Oui</button>
+            <button id="confirmNo" class="modal-btn no-btn">Non</button>
+        </div>
+    </div>
+</div>
+
+<th:block th:insert="fragments/fragment::gender"></th:block>
+<th:block th:insert="fragments/fragment::modal"></th:block>
+</body>
+</html>

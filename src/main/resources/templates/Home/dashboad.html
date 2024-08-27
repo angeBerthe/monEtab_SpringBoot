@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head th:insert="fragments/fragment::head" ></head>
+<body>
+<div class="sidebar"  th:insert="fragments/fragment::sidebar"></div>
+
+<div class="main-content">
+  <h1>Tableau de bord</h1>
+  <div class="stats-grid">
+    <div class="stat-box">
+      <h2>Nombre d'élève</h2>
+      <p>128 100</p>
+    </div>
+    <div class="stat-box">
+      <h2>Nombre de professeur</h2>
+      <p>128 100</p>
+    </div>
+    <div class="stat-box">
+      <h2>Nombre d'utilisateur</h2>
+      <p>128 100</p>
+    </div>
+    <div class="stat-box">
+      <h2>Élève par genre</h2>
+      <div style="height: 100px;">
+        <canvas id="genderChart"></canvas>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<th:block th:insert="fragments/fragment::gender"></th:block>
+<th:block th:insert="fragments/fragment::modal"></th:block>
+</body>
+</html>

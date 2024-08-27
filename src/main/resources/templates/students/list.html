@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr"
+
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head th:insert="fragments/fragment::head" ></head>
+<body>
+<div class="sidebar"  th:insert="fragments/fragment::sidebar"></div>
+
+<div class="main-content">
+    <main>
+        <header>
+            <h1>Élèves (<span th:text="${students.size()}"></span>)</h1>
+            <a th:href="@{/students/add}">
+            <button class="add-student"><img src="../icons/plus.png" style="width: 30px;height: 30px" alt=""> </button>
+            </a>
+        </header>
+        <section class="table-section">
+            <table>
+                <thead>
+                <tr >
+                    <th >Nom</th>
+                    <th>Prénom</th>
+                    <th>Classe</th>
+                    <th>Matricule</th>
+                    <th>Action</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="student:${students}">
+                    <td th:text="${student.lastName}"></td>
+                    <td th:text="${student.firstName}"></td>
+                    <td th:text="${student.classe}"></td>
+                    <td th:text="${student.matricule}"></td>
+                    <td>
+                        <a th:href="@{/students/{id_person}(id_person=${student.id_person})}">
+                            <button class="edit-btn">Modifier</button>
+                        </a>
+                        <form th:action="@{/students/{id_person}(id_person=${student.id_person})}" method="post" style="display:inline;">
+                            <button type="submit" class="delete-btn">Supprimer</button>
+                        </form>
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+</div>
+<div id="confirmationModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>ATTENTION !!!</h2>
+        </div>
+        <div class="modal-body">
+            <p>Voulez-vous supprimer ce professeur ?</p>
+        </div>
+        <div class="modal-footer">
+            <button id="confirmYes" class="modal-btn yes-btn">Oui</button>
+            <button id="confirmNo" class="modal-btn no-btn">Non</button>
+        </div>
+    </div>
+</div>
+
+<th:block th:insert="fragments/fragment::gender"></th:block>
+<th:block th:insert="fragments/fragment::modal"></th:block>
+</body>
+</html>
