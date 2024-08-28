@@ -30,17 +30,8 @@ public class TeachersController {
     }
 
     @PostMapping
-    public String saveTeacher(@RequestParam("dateDeNaissance") String dateDeNaissance, Teacher teacher){
+    public String saveTeacher(Teacher teacher){
         log.debug("Request to save teacher");
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-
-            Date dateNaissance = formatter.parse(dateDeNaissance); // Format DD/MM/YYYY
-
-            teacher.setDateDeNaissance(String.valueOf(dateNaissance));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
         teacherService.save(teacher);
         return "redirect:/teachers";
     }

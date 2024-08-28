@@ -3,6 +3,7 @@ package ci.digitalacademy.monetab.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -37,7 +38,8 @@ public abstract class Person {
     @Column(name = "telephone", nullable = false)
     private String telephone;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "dateDeNaissance", nullable = false)
-    private String dateDeNaissance;
+    private Date dateDeNaissance;
 
 }

@@ -21,9 +21,11 @@
                 <tr>
                     <th>Nom</th>
                     <th>Prénom</th>
-                    <th>Email</th>
                     <th>Matiere</th>
                     <th>Vacant</th>
+                    <th>Téléphone</th>
+                    <th>Ville</th>
+                    <th>DateNaissance</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -31,9 +33,11 @@
                 <tr th:each="teacher:${teachers}">
                     <td th:text="${teacher.lastName}"></td>
                     <td th:text="${teacher.firstName}"></td>
-                    <td th:text="${teacher.email}"></td>
                     <td  th:text="${teacher.matiereEnseigne}"></td>
                     <td  th:text="${teacher.vacant}"></td>
+                    <td th:text="${teacher.telephone}"></td>
+                    <td th:text="${teacher.ville}"></td>
+                    <td th:text="${#dates.format(teacher.dateDeNaissance, 'dd-MM-yyyy')}"></td>
                     <td>
                         <a th:href="@{/teachers/{id_person}(id_person=${teacher.id_person})}">
                         <button class="edit-btn">Modifier</button>

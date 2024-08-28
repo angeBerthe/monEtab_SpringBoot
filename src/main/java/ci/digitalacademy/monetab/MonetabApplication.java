@@ -109,7 +109,7 @@ public class MonetabApplication implements CommandLineRunner {
 */
         //Enregistrement de l'utilisateur
 
-
+/*
         User user = new User();
 
         user.setPseudo("angeB");
@@ -125,7 +125,7 @@ public class MonetabApplication implements CommandLineRunner {
         userService.save(user);
         userService.save(user1);
 
-
+*/
     }
 
 }
